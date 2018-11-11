@@ -1,0 +1,46 @@
+docker run --name eosio \
+  --publish 7777:7777 \
+  --publish 127.0.0.1:5555:5555 \
+  --volume /home/osboxes/contracts:/home/osboxes/contracts \
+  --detach \
+  eosio/eos:v1.4.2 \
+  /bin/bash -c \
+  "keosd --http-server-address=0.0.0.0:5555 & exec nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --plugin eosio::http_plugin -d /mnt/dev/data --config-dir /mnt/dev/config --http-server-address=0.0.0.0:7777 --access-control-allow-origin=* --contracts-console --http-validate-host=false --filter-on='*'"
+
+  docker start eosio
+  docker stop eosio
+alias cleos='docker exec -it eosio /opt/eosio/bin/cleos --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555'
+cleos wallet create --to-console
+cleos wallet create_key
+
+curl  -d '{"account_name":"user1"}' -H "Content-Type: application/json" --request POST --url http://127.0.0.1:7777/v1/chain/get_account 
+
+curl  --request POST --url http://127.0.0.1:7777/v1/chain/get_account -H "Content-Type: application/json" -d '{"account_name":"user1"}'
+
+curl http://127.0.0.1:7777/v1/chain/get_account -X POST -d '{"account_name":"user1"}'
+
+curl  --request POST --url http://127.0.0.1:7777/v1/chain/get_info  -H "Content-Type: application/json" 
+
+curl --request POST \
+  --url http://127.0.0.1:7777/v1/chain/get_code \
+  -d '{"account_name":"eosio.token"}' -H "Content-Type: application/json"
+
+
+curl  -d '{"account_name":"eosio.token", "pos":"0", "offset": "0"}' -H "Content-Type: application/json" --request POST --url http://127.0.0.1:7777/v1/chain/get_account 
+
+ps -eaf |grep nodeos
+sudo kill 11533
+
+
+cleos --print-request get account user1
+
+
+eosio-cpp -I include -o eosio.token.wasm src/eosio.token.cpp --abigen
+
+cleos set contract eosio.token /home/osboxes/contracts/eosio.contracts/eosio.token --abi eosio.token.abi -p eosio.token@active
+
+cleos push action eosio.token create '[ "eosio", "1000000000.0000 SYS"]' -p eosio.token@active
+
+cleos push action eosio.token create '{"issuer":"eosio", "maximum_supply":"1000000000.0000 SYS"}' -p eosio.token@active
+
+cleos push action eosio.token issue '[ "user1", "100.0000 SYS", "registration gift" ]' -p eosio@active

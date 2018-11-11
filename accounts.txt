@@ -1,0 +1,15 @@
+cleos create account eosio user1 EOS61jhV8BBTVHeJ1CHqnHJJMi2A94sA7nf78fRcGyQBS37SekKzA 
+
+cleos create account eosio user2 EOS61jhV8BBTVHeJ1CHqnHJJMi2A94sA7nf78fRcGyQBS37SekKzA 
+
+cleos create account eosio game1 EOS61jhV8BBTVHeJ1CHqnHJJMi2A94sA7nf78fRcGyQBS37SekKzA 
+
+cleos create account eosio game2 EOS61jhV8BBTVHeJ1CHqnHJJMi2A94sA7nf78fRcGyQBS37SekKzA 
+
+cleos create account eosio game1item1 EOS61jhV8BBTVHeJ1CHqnHJJMi2A94sA7nf78fRcGyQBS37SekKzA 
+
+cleos create account eosio game1item2 EOS61jhV8BBTVHeJ1CHqnHJJMi2A94sA7nf78fRcGyQBS37SekKzA 
+
+cleos create account eosio game1item3 EOS61jhV8BBTVHeJ1CHqnHJJMi2A94sA7nf78fRcGyQBS37SekKzA 
+
+cleos create account eosio eosio.token EOS61jhV8BBTVHeJ1CHqnHJJMi2A94sA7nf78fRcGyQBS37SekKzA 

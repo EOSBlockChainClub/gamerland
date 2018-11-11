@@ -1,0 +1,16 @@
+Private keys
+
+PW5JY4Pcrk3BATRX1MgPCh2m1ZtezNVr4hmPxXpGXZPGjbK4xsGm7
+
+
+Public keys:
+
+EOS61jhV8BBTVHeJ1CHqnHJJMi2A94sA7nf78fRcGyQBS37SekKzA
+
+Dev private keys:
+
+EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
+
+Dev public keys:
+
+EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV

@@ -1,0 +1,67 @@
+<head>
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/lib.js"></script>
+	<script>
+		var data = JSON.stringify(  { account_name: "user1" } );
+
+		var xhr = new XMLHttpRequest();
+		xhr.withCredentials = true;
+
+		xhr.addEventListener("readystatechange", function () {
+		  if (this.readyState === this.DONE) {
+		    console.log(this.responseText);
+		  }
+		});
+
+		xhr.open("POST", "http://127.0.0.1:7777/v1/chain/get_account");
+		//xhr.open("POST", "http://127.0.0.1:7777/v1/chain/get_info");
+
+		xhr.send(data);
+	</script>
+
+	<script type="text/javascript">
+		
+		var urlInfo = "http://127.0.0.1:7777/v1/chain/get_info";
+		var urlGetAccount = "http://127.0.0.1:7777/v1/chain/get_account";
+
+		dataObj = { account_name: "user1" };
+		data = JSON.stringify(  { account_name: "user1" } );
+
+		$(document).ready( function() {
+
+			loadWithData( urlGetAccount, console.log, dataObj );
+
+			$.ajax({
+			   url: urlInfo,
+			   xhrFields: {
+			      withCredentials: true
+			   },
+			   method: "post"
+			});
+
+
+			$.ajax({
+			   url: urlGetAccount,
+			   method: "post",
+			   dataType: "json",
+			   xhrFields: {
+			      withCredentials: true,
+			   	  contentType: 'application/json',
+			   },
+			   data: data
+			}).done(function( html ) {
+			   	  alet( "success" );
+			    $( ".results" ).append( html );
+			  });
+
+			getActions();
+
+		});
+	</script>
+
+</head>
+<body>
+	<div class="result">
+	</div>
+</body>
